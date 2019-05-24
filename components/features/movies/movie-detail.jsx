@@ -18,6 +18,9 @@ class MovieDetail extends Component {
   }
 }
 
-MovieDetail.label = 'Movie Detail'
+MovieDetail.label = {
+  en: 'Movie Detail',
+  es: 'Los detalles de la pelicula'
+}
 
 export default MovieDetail
