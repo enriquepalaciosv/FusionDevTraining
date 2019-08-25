@@ -14,6 +14,7 @@ export default {
   resolve,
   schemaName: 'movies',
   params: {
-    movieQuery: 'text'
+    movieQuery: 'text',
+    page: 'number'
   }
 }

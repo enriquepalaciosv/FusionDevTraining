@@ -8,27 +8,16 @@ class MovieList extends Component {
   constructor (props) {
     super(props);
     this.state = { movies: { list: [] }};
-    this.fetch = this.fetch.bind(this)
     this.fetch();
   }
 
   fetch () {
-    const { movies } = this.state;
     this.fetchContent({
-        movies: {
-          source: 'movie-search', 
-          query: { movieQuery: 'Jurassic' }, 
-          filter: '{ totalResults Search { Title Year Poster } }',
-          transform (data) {
-            // Check if data is being returned
-            if(data && data.Search)
-              return { list: [...movies.list, ...data.Search] }
-
-            // Otherwise just keep the current list of movies
-            else
-              return movies;
-          }
-        }
+      movies: {
+        source: 'movie-search', 
+        query: { movieQuery: 'Jurassic' }, 
+        filter: '{ totalResults Search { Title Year Poster } }'
+      }
     })
   }
 
