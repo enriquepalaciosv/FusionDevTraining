@@ -19,7 +19,7 @@ const ArticleRightRail = (props) => {
       </section>
       <footer className='col-12'>
         {props.children[3]}
-        <p>Copyright &copy; 2018</p>
+        <p>Copyright &copy; 2019</p>
       </footer>
     </div>
   )

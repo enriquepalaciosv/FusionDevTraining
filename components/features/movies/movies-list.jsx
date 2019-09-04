@@ -7,7 +7,9 @@ import React, { Fragment, Component } from 'react'
 class MovieList extends Component {
   constructor (props) {
     super(props);
-    this.state = { movies: { list: [] }};
+    this.state = {
+      movies: []
+    };
     this.fetch();
   }
 
@@ -23,7 +25,7 @@ class MovieList extends Component {
 
 
   render () {
-    const { list: movies } = this.state.movies
+    const movies = this.state.movies.Search
     return (
       <Fragment>
         <h2>Movies</h2>
