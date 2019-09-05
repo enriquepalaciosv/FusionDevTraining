@@ -1,7 +1,6 @@
-/*  /components/features/movies/movie-list.jsx  */
-
 import Consumer from 'fusion:consumer'
 import React, { Fragment, Component } from 'react'
+import PropTypes from 'prop-types';
 
 @Consumer
 class MovieList extends Component {
@@ -10,37 +9,45 @@ class MovieList extends Component {
     this.state = {
       movies: []
     };
-    this.fetch();
+    this.fetch(props);
   }
 
-  fetch () {
+  fetch (props) {
     this.fetchContent({
       movies: {
         source: 'movie-search', 
-        query: { movieQuery: 'Jurassic' }, 
+        query: { movieQuery: props.customFields.movieQuery }, 
         filter: '{ totalResults Search { Title Year Poster } }'
       }
     })
   }
 
-
   render () {
-    const movies = this.state.movies.Search
-    return (
-      <Fragment>
-        <h2>Movies</h2>
-        <div>
-          {movies && movies.map((movie, idx) =>
-            <div key={`movie-${idx}`}>
-              <h4>{movie.Title}</h4>
-              <p><strong>Year:</strong> {movie.Year}</p>
-              <img src={movie.Poster} />
-            </div>
-          )}
-        </div>
-      </Fragment>
-    )
+    if (this.state.movies && this.state.movies.Search && this.state.movies.Search.length > 0) {
+      const movies = this.state.movies.Search
+      return (
+        <Fragment>
+          <h2>Movies</h2>
+          <div>
+            {movies && movies.map((movie, idx) =>
+              <div key={`movie-${idx}`}>
+                <h4>{movie.Title}</h4>
+                <p><strong>Year:</strong> {movie.Year}</p>
+                <img src={movie.Poster} />
+              </div>
+            )}
+          </div>
+        </Fragment>
+      )
+    }
+    return null;
   }
 }
+
+MovieList.propTypes = {
+  customFields: PropTypes.shape({
+    movieQuery: PropTypes.string
+  })
+};
 
 export default MovieList
