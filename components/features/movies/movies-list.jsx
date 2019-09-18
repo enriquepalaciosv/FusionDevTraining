@@ -31,7 +31,10 @@ class MovieList extends Component {
           <div>
             {movies && movies.map((movie, idx) =>
               <div key={`movie-${idx}`}>
-                <h4>{movie.Title}</h4>
+                {this.props.customFields.showTitle 
+                  ? <h4>{movie.Title}</h4>  
+                  : null
+                }
                 <p><strong>Year:</strong> {movie.Year}</p>
                 <img src={movie.Poster} />
               </div>
@@ -46,7 +49,8 @@ class MovieList extends Component {
 
 MovieList.propTypes = {
   customFields: PropTypes.shape({
-    movieQuery: PropTypes.string
+    movieQuery: PropTypes.string,
+    showTitle: PropTypes.bool,
   })
 };
 
